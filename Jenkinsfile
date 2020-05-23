@@ -21,8 +21,7 @@ pipeline
             }
             steps 
             {
-                withCredentials
-                ([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) 
+                withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) 
                 {
                     sshPublisher(
                         failOnError: true,
@@ -39,8 +38,7 @@ pipeline
                                 ], 
                                 transfers: 
                                 [
-                                    sshTransfer
-                                    (
+                                    sshTransfer(
                                         sourceFiles: 'dist/trainSchedule.zip',
                                         removePrefix: 'dist/',
                                         remoteDirectory: '/tmp',
